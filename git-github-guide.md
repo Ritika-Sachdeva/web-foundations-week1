@@ -73,20 +73,28 @@ git-github-guide.md
 
 **Commit each file using proper commit messages:**
 
+**Conventional COMMITS**
+- _feat: → A new feature_
+- _fix: → A bug fix_
+- _docs: → Documentation changes only_
+- _style: → Code formatting (no logic changes)_
+- _refactor: → Code change that doesn’t fix a bug or add a feature_
+- _test: → Adding or updating tests_
+- _chore: → Changes to build process, tooling, etc._
+
 git add how-browser-works.md
 git commit -m "docs: add how-browser-works.md"
-Push your branch to GitHub:
+**Push your branch to GitHub:**
 
 git push -u origin week1-submission
-Create a pull request:
+
+**Create a pull request:**
 
 Base branch: main
 
 Compare branch: week1-submission
 
-PR title: Week 1 Submission – Ritika Sachdeva
-
-PR description: List the files added
+Adding the Pr title and description and assigning the reviewer
 
 ## Why This Workflow Matters
 - Keeps main clean and production-ready
