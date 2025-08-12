@@ -216,7 +216,7 @@ CORS headers present:
 Access-Control-Allow-Origin: *
 ```
 
-## Case 2 – Simple POST that avoids preflight (Allowed)
+## Case 2 - Simple POST that avoids preflight (Allowed)
 
 **Description:**  
 This case sends a POST request with a **"simple" Content-Type** (`application/x-www-form-urlencoded`).  
@@ -235,7 +235,7 @@ POST (form) → `https://jsonplaceholder.typicode.com/posts`
 }
 ```
 
-**Real-life analogy:**## Understanding the Preflight OPTIONS Request in Case 3
+## Case 3 - Understanding the Preflight OPTIONS Request
 
 When the browser detected a **non-simple POST** (with `Content-Type: application/json`), it sent an **OPTIONS** request first to check if the server allows this request.
 
@@ -278,7 +278,6 @@ In this case, we make a **non-simple POST** request **with credentials** (`crede
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Credentials: true
 
-# Case 4 – Preflight + Credentials
 
 ## Original Scenario
 
@@ -292,7 +291,7 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
 });
 ```
 
-## Expected Behavior (Theory)
+## Expected Behavior 
 
 This should trigger a preflight OPTIONS request because:
 
@@ -311,7 +310,7 @@ In our test, the browser did not show a CORS block in the console. Likely becaus
 
 ## What I Tried Next
 
-We simulated this scenario on our own server to see the real blocking behavior.
+I simulated this scenario on our own server to see the real blocking behavior.
 
 ## Broken Version (Reproducing the Block)
 
