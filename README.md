@@ -1,4 +1,4 @@
-# Web Foundations - Week 1 🚀
+# Web Foundations 🚀
 
 This repository contains my **Week 1** tasks for learning the foundations of web development, covering essential concepts like browser internals, JavaScript execution, APIs, and Git/GitHub workflows.
 
