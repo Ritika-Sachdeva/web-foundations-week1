@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Browser Storage Demo</title>
+</head>
+<body>
+  <h1>Browser Storage Demo</h1>
+
+  <button onclick="setLocal()">Set LocalStorage</button>
+  <button onclick="getLocal()">Get LocalStorage</button>
+  <br><br>
+
+  <button onclick="setSession()">Set SessionStorage</button>
+  <button onclick="getSession()">Get SessionStorage</button>
+  <br><br>
+
+  <button onclick="setCookie()">Set Cookie</button>
+  <button onclick="getCookie()">Get Cookie</button>
+  <br><br>
+
+  <button onclick="addIndexedDB()">Add to IndexedDB</button>
+  <button onclick="readIndexedDB()">Read IndexedDB</button>
+  <br><br>
+
+  <script>
+    // ---- LocalStorage ----
+    function setLocal() {
+      localStorage.setItem("name", "Ritika");
+      console.log("LocalStorage set: name=Ritika");
+    }
+    function getLocal() {
+      console.log("LocalStorage get:", localStorage.getItem("name"));
+    }
+
+    // ---- SessionStorage ----
+    function setSession() {
+      sessionStorage.setItem("sessionKey", "12345");
+      console.log("SessionStorage set: sessionKey=12345");
+    }
+    function getSession() {
+      console.log("SessionStorage get:", sessionStorage.getItem("sessionKey"));
+    }
+
+    // ---- Cookies ----
+    function setCookie() {
+      document.cookie = "user=Ritika; max-age=60"; // 1 min expiry
+      console.log("Cookie set: user=Ritika");
+    }
+    function getCookie() {
+      console.log("Cookies:", document.cookie);
+    }
+
+    // ---- IndexedDB  ----
+    let db;
+    let request = indexedDB.open("MyDB", 1);
+    request.onupgradeneeded = function(e) {
+      db = e.target.result;
+      db.createObjectStore("users", { autoIncrement: true });
+    };
+    request.onsuccess = function(e) {
+      db = e.target.result;
+      console.log("IndexedDB ready");
+    };
+
+    function addIndexedDB() {
+      let tx = db.transaction("users", "readwrite");
+      tx.objectStore("users").add({name: "Ritika", time: Date.now()});
+      console.log("Added to IndexedDB");
+    }
+    function readIndexedDB() {
+      let tx = db.transaction("users", "readonly");
+      let store = tx.objectStore("users");
+      let req = store.getAll();
+      req.onsuccess = () => console.log("IndexedDB data:", req.result);
+    }
+  </script>
+</body>
+</html>
